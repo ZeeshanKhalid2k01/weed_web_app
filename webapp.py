@@ -46,7 +46,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     #model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)  # force_reload = recache latest code
-    model = torch.hub.load('ultralytics/yolov5', 'custom', r'C:\Users\fa19-bcs-040.cuiwah\Desktop\yolo checking\yolov5\runs\train\yolov5s_results\weights/best.pt')
+    #model = torch.hub.load('ultralytics/yolov5', 'custom', r'C:\Users\fa19-bcs-040.cuiwah\Desktop\yolo checking\yolov5\runs\train\yolov5s_results\weights/best.pt')
 
+    import torch
+    import urllib.request
+
+    url = "https://raw.githubusercontent.com/ZeeshanKhalid2k01/weed_web_app/main/best.pt"
+    urllib.request.urlretrieve(url, "best.pt")
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt')
+
+    
     model.eval()
     app.run(host="0.0.0.0", port=args.port)  # debug=True causes Restarting with stat
