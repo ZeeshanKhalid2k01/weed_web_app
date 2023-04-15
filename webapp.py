@@ -2,6 +2,18 @@
 Simple app to upload an image via a web form 
 and view the inference results on the image in the browser.
 """
+import streamlit as st
+import subprocess
+
+# Install required libraries
+libs = ['opencv-python-headless', 'torch', 'torchvision']
+for lib in libs:
+    try:
+        subprocess.call(['pip', 'install', lib])
+    except:
+        st.write(f'Could not install {lib}')
+
+
 import argparse
 import io
 import os
